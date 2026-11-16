@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Singapore Funds Corporation | Premier Holding & Investment Group</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-700-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-900-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-500-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --navy: #0a1a2f;
+    --navy-deep: #060f1d;
+    --navy-light: #152a47;
+    --gold: #c9a961;
+    --gold-light: #e4c989;
+    --gold-dark: #9a7f3f;
+    --cream: #f5f1e8;
+  }
+
+  * { -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy-deep);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  .font-serif { font-family: 'Playfair Display', serif; }
+
+  .hero-bg {
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(201, 169, 97, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(21, 42, 71, 0.8) 0%, transparent 60%),
+      linear-gradient(135deg, #060f1d 0%, #0a1a2f 40%, #152a47 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201, 169, 97, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201, 169, 97, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(201, 169, 97, 0.08) 0%, transparent 40%);
+    animation: pulse-glow 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    width: 80px;
+  }
+
+  .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .nav-link:hover, .nav-link.active { color: var(--gold); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  .pillar-card {
+    position: relative;
+    background: rgba(10, 26, 47, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+  .pillar-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .pillar-card:hover {
+    background: rgba(21, 42, 71, 0.7);
+    transform: translateY(-4px);
+  }
+  .pillar-card:hover::after { transform: scaleX(1); }
+  .pillar-card:hover .pillar-icon {
+    color: var(--gold);
+    transform: scale(1.1) rotate(-5deg);
+  }
+  .pillar-icon { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); color: var(--gold-light); }
+
+  .btn-gold {
+    position: relative;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--navy-deep);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+  .btn-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+  }
+  .btn-gold:hover::before { left: 100%; }
+  .btn-gold:hover {
+    box-shadow: 0 10px 30px -5px rgba(201, 169, 97, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .stat-number {
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .section-divider {
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.3), transparent);
+    height: 1px;
+  }
+
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--navy-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+  .particle {
+    position: absolute;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.3;
+    pointer-events: none;
+    animation: float-up linear infinite;
+  }
+  @keyframes float-up {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-100px) scale(1); opacity: 0; }
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 40px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+  }
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: var(--navy-deep);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.1);
+  }
+
+  .nav-blur {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(6, 15, 29, 0.7);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .compass {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    opacity: 0.15;
+    animation: rotate-slow 60s linear infinite;
+  }
+  @keyframes rotate-slow {
+    from { transform: translateY(-50%) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg); }
+  }
+
+  @media (max-width: 1024px) {
+    .compass { display: none; }
+  }
+
+  .mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .mobile-menu.open { transform: translateX(0); }
+
+  .reclamation-visual {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    background: linear-gradient(135deg, #0a1a2f 0%, #152a47 100%);
+  }
+
+  .reclamation-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(201, 169, 97, 0.15) 0%, transparent 60%);
+    z-index: 1;
+  }
+
+  .reclamation-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reclamation-visual:hover img {
+    transform: scale(1.08);
+  }
+
+  .stat-ticker {
+    position: relative;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(135deg, rgba(21, 42, 71, 0.4) 0%, rgba(10, 26, 47, 0.6) 100%);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    transition: all 0.5s ease;
+  }
+  .stat-ticker:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .stat-ticker::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .stat-ticker:hover::before { opacity: 1; }
+
+  .reclamation-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    height: 600px;
+  }
+  .reclamation-gallery .visual-main {
+    grid-row: 1 / 3;
+  }
+  @media (max-width: 768px) {
+    .reclamation-gallery {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      height: auto;
+    }
+    .reclamation-gallery .visual-main {
+      grid-row: auto;
+      min-height: 300px;
+    }
+    .reclamation-gallery > div {
+      min-height: 220px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Particles -->
+<div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 flex items-center justify-center border border-[color:var(--gold)]/60 bg-gradient-to-br from-[color:var(--gold)] to-[color:var(--gold-dark)] text-[color:var(--navy-deep)]">
+          <span class="font-serif text-[15px] font-bold">SFC</span>
+        </div>
+        <div class="flex flex-col leading-tight">
+          <span class="font-serif text-sm font-bold text-[color:var(--cream)] sm:text-base">Singapore Funds Corporation</span>
+          <span class="text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--gold)]/70 sm:text-[11px]">Holding & Investment Group</span>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center gap-10">
+        <a href="#overview" class="nav-link text-sm font-medium tracking-wide text-[color:var(--cream)] active">Overview</a>
+        <a href="#legacy" class="nav-link text-sm font-medium tracking-wide text-[color:var(--cream)]/70">Legacy</a>
+        <a href="#contact" class="nav-link text-sm font-medium tracking-wide text-[color:var(--cream)]/70">Contact</a>
+      </nav>
+      <div class="hidden lg:block">
+        <a href="#contact" class="btn-gold inline-flex items-center gap-2 px-6 py-2.5 text-sm">
+          Partner With Us
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+      <button id="menuBtn" class="lg:hidden text-[color:var(--cream)]">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="mobile-menu fixed inset-0 z-50 bg-[color:var(--navy-deep)] lg:hidden">
+  <div class="flex items-center justify-between px-6 h-20 border-b border-[color:var(--gold)]/20">
+    <span class="font-serif text-lg font-bold">Menu</span>
+    <button id="closeMenu" class="text-[color:var(--cream)]">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="flex flex-col gap-6 px-6 py-10">
+    <a href="#overview" class="text-2xl font-serif text-[color:var(--cream)]">Overview</a>
+    <a href="#legacy" class="text-2xl font-serif text-[color:var(--cream)]">Legacy</a>
+    <a href="#contact" class="text-2xl font-serif text-[color:var(--cream)]">Contact</a>
+    <a href="#contact" class="btn-gold mt-6 inline-flex items-center justify-center gap-2 px-6 py-3 text-sm">Partner With Us</a>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section id="overview" class="hero-bg min-h-screen flex items-center relative pt-20">
+  <!-- Decorative compass -->
+  <svg class="compass" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="0.5">
+    <circle cx="100" cy="100" r="95" stroke="currentColor" class="text-[color:var(--gold)]"/>
+    <circle cx="100" cy="100" r="75" stroke="currentColor" class="text-[color:var(--gold)]"/>
+    <circle cx="100" cy="100" r="55" stroke="currentColor" class="text-[color:var(--gold)]"/>
+    <line x1="100" y1="5" x2="100" y2="195" stroke="currentColor" class="text-[color:var(--gold)]"/>
+    <line x1="5" y1="100" x2="195" y2="100" stroke="currentColor" class="text-[color:var(--gold)]"/>
+    <line x1="30" y1="30" x2="170" y2="170" stroke="currentColor" class="text-[color:var(--gold)]"/>
+    <line x1="170" y1="30" x2="30" y2="170" stroke="currentColor" class="text-[color:var(--gold)]"/>
+    <text x="100" y="18" text-anchor="middle" fill="currentColor" class="text-[color:var(--gold)]" font-size="10" font-family="serif">N</text>
+    <text x="100" y="192" text-anchor="middle" fill="currentColor" class="text-[color:var(--gold)]" font-size="10" font-family="serif">S</text>
+    <text x="188" y="104" text-anchor="middle" fill="currentColor" class="text-[color:var(--gold)]" font-size="10" font-family="serif">E</text>
+    <text x="12" y="104" text-anchor="middle" fill="currentColor" class="text-[color:var(--gold)]" font-size="10" font-family="serif">W</text>
+  </svg>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32 w-full">
+    <div class="max-w-4xl">
+      <h1 class="reveal font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-[color:var(--cream)] mb-8">
+        A premier <span class="text-gradient italic">one-stop</span> holding company bridging two nations.
+      </h1>
+      <p class="reveal reveal-delay-1 text-lg md:text-xl leading-relaxed text-[color:var(--cream)]/70 max-w-3xl mb-12">
+        Singapore Funds Corporation unites large-scale infrastructure, global trading, industrial fisheries, and fund management under one trusted institutional group.
+      </p>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[color:var(--gold)]/60">
+    <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+    <div class="w-px h-12 bg-gradient-to-b from-[color:var(--gold)] to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<!-- Stats Ticker -->
+<section class="relative border-y border-[color:var(--gold)]/20 bg-[color:var(--navy-deep)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[color:var(--gold)]/10">
+      <div class="reveal stat-ticker text-center">
+        <div class="font-serif text-5xl md:text-6xl font-bold stat-number mb-3" data-count="38" data-suffix="+">0</div>
+        <div class="text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--cream)]/60">Years of Excellence</div>
+      </div>
+      <div class="reveal reveal-delay-1 stat-ticker text-center">
+        <div class="font-serif text-5xl md:text-6xl font-bold stat-number mb-3" data-count="3">0</div>
+        <div class="text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--cream)]/60">Countries of Presence</div>
+      </div>
+      <div class="reveal reveal-delay-2 stat-ticker text-center">
+        <div class="font-serif text-5xl md:text-6xl font-bold stat-number mb-3" data-count="12" data-suffix="+">0</div>
+        <div class="text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--cream)]/60">Portfolio Businesses & Activities</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="relative py-24 lg:py-32 bg-[color:var(--navy-deep)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+      <div>
+        <div class="reveal flex items-center gap-3 mb-6">
+          <span class="h-px w-12 bg-[color:var(--gold)]"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--gold)]">Who We Are</span>
+        </div>
+        <h2 class="reveal reveal-delay-1 font-serif text-4xl md:text-5xl font-bold leading-tight text-[color:var(--cream)] mb-6">
+          An institutional bridge between <span class="text-gradient italic">two nations.</span>
+        </h2>
+        <div class="reveal reveal-delay-2 gold-rule mb-8"></div>
+        <p class="reveal reveal-delay-2 text-base leading-relaxed text-[color:var(--cream)]/70 mb-6">
+          SFC is a Singapore-domiciled company with multinational holdings across a diverse portfolio, including island and reclamation development, investment consortiums, global capital allocation, financial management, healthcare holdings, industrial fisheries and port operations, infrastructure development, medical services, global trading and commodities, mining and resources, and agricultural commodities — spanning twelve registered entities across Singapore, Indonesia, and the United States.
+        </p>
+        <p class="reveal reveal-delay-3 text-base leading-relaxed text-[color:var(--cream)]/70 mb-10">
+          Our strength lies in vertical integration — from licensed sand concessions and a dedicated dredging fleet to the trading desk, from the fishery port to the investment portfolio and real estate — spanning five core divisions: fishery industrial ports, large-scale infrastructure and reclamation, a global trading house, real estate and resources, and strategic fund investment. Every venture is governed with the diligence, transparency, and long-term perspective that international partners and governments expect.
+        </p>
+        <a href="#legacy" class="reveal reveal-delay-4 inline-flex items-center gap-3 text-sm font-semibold text-[color:var(--gold)] hover:text-[color:var(--gold-light)] transition-colors group">
+          Discover our legacy
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div class="reveal pillar-card p-8">
+          <svg class="pillar-icon w-10 h-10 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <h3 class="font-serif text-xl font-bold text-[color:var(--cream)]">Trusted Governance</h3>
+        </div>
+        <div class="reveal reveal-delay-1 pillar-card p-8">
+          <svg class="pillar-icon w-10 h-10 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <h3 class="font-serif text-xl font-bold text-[color:var(--cream)]">Government Relations</h3>
+        </div>
+        <div class="reveal reveal-delay-2 pillar-card p-8">
+          <svg class="pillar-icon w-10 h-10 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <h3 class="font-serif text-xl font-bold text-[color:var(--cream)]">Global Reach</h3>
+        </div>
+        <div class="reveal reveal-delay-3 pillar-card p-8">
+          <svg class="pillar-icon w-10 h-10 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <h3 class="font-serif text-xl font-bold text-[color:var(--cream)]">Regional Footprint</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider max-w-7xl mx-auto"></div>
+
+<!-- Reclamation Legacy Section -->
+<section id="legacy" class="relative py-24 lg:py-32 bg-gradient-to-b from-[color:var(--navy-deep)] via-[color:var(--navy)] to-[color:var(--navy-deep)] overflow-hidden">
+  <!-- Ambient glow -->
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-[color:var(--gold)] opacity-5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-[color:var(--gold)] opacity-5 rounded-full blur-3xl"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <div class="reveal flex items-center justify-center gap-3 mb-6">
+        <span class="h-px w-12 bg-[color:var(--gold)]"></span>
+        <span class="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--gold)]">The Legacy</span>
+        <span class="h-px w-12 bg-[color:var(--gold)]"></span>
+      </div>
+      <h2 class="reveal reveal-delay-1 font-serif text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-[color:var(--cream)] mb-8">
+        Shaping <span class="text-gradient italic">Singapore's</span><br/>shoreline for 38 years.
+      </h2>
+      <div class="reveal reveal-delay-2 gold-rule mx-auto mb-8"></div>
+      <p class="reveal reveal-delay-2 text-lg leading-relaxed text-[color:var(--cream)]/70">
+        From the Riau Islands to Singapore's shoreline, the Group has been a principal marine-sand supplier to national land-reclamation works for nearly four decades. With licensed resources exceeding <span class="text-[color:var(--gold)] font-semibold">two billion cubic metres</span>, we are now preparing for the next generation of Singapore reclamation projects.
+      </p>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="reveal reveal-delay-3 reclamation-gallery mb-20">
+      <!-- Main Visual - Marine Equipment -->
+      <div class="visual-main reclamation-visual">
+        <img src="https://images.unsplash.com/photo-1790117101178-ed66bd6ef29f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" alt="Marine sand dredger at work" loading="lazy"/>
+        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-[color:var(--navy-deep)] via-[color:var(--navy-deep)]/80 to-transparent z-10">
+          <div class="text-xs uppercase tracking-[0.2em] text-[color:var(--gold)] font-semibold mb-2">Marine Equipment</div>
+          <div class="text-sm text-[color:var(--cream)]/80">Self-elevating sand dredger deployed for reclamation supply</div>
+        </div>
+      </div>
+
+      <!-- Secondary Visual - Reclamation in progress -->
+      <div class="reclamation-visual">
+        <img src="https://images.unsplash.com/photo-1742666042043-577f029cb3b6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" alt="Land reclamation project" loading="lazy"/>
+        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[color:var(--navy-deep)] to-transparent">
+          <div class="text-[10px] uppercase tracking-[0.2em] text-[color:var(--gold)] font-semibold">Aerial View</div>
+          <div class="text-xs text-[color:var(--cream)]/70">Reclamation in progress</div>
+        </div>
+      </div>
+
+      <!-- Third Visual - Coastal Development -->
+      <div class="reclamation-visual">
+        <img src="https://images.unsplash.com/photo-1626505985606-e14b6817f5f3?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D" alt="Coastal development" loading="lazy"/>
+        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[color:var(--navy-deep)] to-transparent">
+          <div class="text-[10px] uppercase tracking-[0.2em] text-[color:var(--gold)] font-semibold">Coastal Development</div>
+          <div class="text-xs text-[color:var(--cream)]/70">Shoreline expansion operations</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+      <div class="border border-[color:var(--gold)]/20 p-8 bg-[color:var(--navy-deep)]/50 text-center hover:border-[color:var(--gold)]/60 transition-all">
+        <div class="text-[10px] uppercase tracking-[0.2em] text-[color:var(--cream)]/50 mb-3">Years Supplying Reclamation Sand</div>
+        <div class="font-serif text-5xl md:text-6xl font-bold text-gradient">38+</div>
+      </div>
+      <div class="border border-[color:var(--gold)]/20 p-8 bg-[color:var(--navy-deep)]/50 text-center hover:border-[color:var(--gold)]/60 transition-all">
+        <div class="text-[10px] uppercase tracking-[0.2em] text-[color:var(--cream)]/50 mb-3">Licensed Sand Resources</div>
+        <div class="font-serif text-5xl md:text-6xl font-bold text-gradient">2B m³</div>
+      </div>
+      <div class="border border-[color:var(--gold)]/20 p-8 bg-[color:var(--navy-deep)]/50 text-center hover:border-[color:var(--gold)]/60 transition-all">
+        <div class="text-[10px] uppercase tracking-[0.2em] text-[color:var(--cream)]/50 mb-3">Most Recent Singapore Tender</div>
+        <div class="font-serif text-5xl md:text-6xl font-bold text-gradient">2019</div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="grid gap-12 lg:grid-cols-2">
+      <div>
+        <div class="reveal flex items-center gap-3 mb-10">
+          <span class="h-px w-12 bg-[color:var(--gold)]"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--gold)]">Our Journey</span>
+        </div>
+        <div class="space-y-10">
+          <div class="reveal timeline-item">
+            <div class="text-xs uppercase tracking-wider text-[color:var(--gold)] mb-2">1988 — Present</div>
+            <h3 class="font-serif text-xl font-bold text-[color:var(--cream)] mb-3">Main supplier to Singapore reclamation</h3>
+            <p class="text-sm leading-relaxed text-[color:var(--cream)]/60">For over 38 years the Group has been a principal supplier of marine sand for Singapore's land-reclamation programme.</p>
+          </div>
+          <div class="reveal reveal-delay-1 timeline-item">
+            <div class="text-xs uppercase tracking-wider text-[color:var(--gold)] mb-2">Early Years</div>
+            <h3 class="font-serif text-xl font-bold text-[color:var(--cream)] mb-3">Supply-only origins</h3>
+            <p class="text-sm leading-relaxed text-[color:var(--cream)]/60">In the early years the Group focused purely on sand supply rather than construction works, delivering directly to Korean and Japanese main contractors.</p>
+          </div>
+          <div class="reveal reveal-delay-2 timeline-item">
+            <div class="text-xs uppercase tracking-wider text-[color:var(--gold)] mb-2">Riau Province</div>
+            <h3 class="font-serif text-xl font-bold text-[color:var(--cream)] mb-3">Indonesia's Riau Islands</h3>
+            <p class="text-sm leading-relaxed text-[color:var(--cream)]/60">All early volumes were sourced from concessions in Indonesia's Riau Islands, secured under the Chairman's appointment as Economic Advisor and Trade Commissioner.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="reveal flex items-center gap-3 mb-10 lg:mt-24">
+          <span class="h-px w-12 bg-[color:var(--gold)]"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--gold)]">Expansion</span>
+        </div>
+        <div class="space-y-10">
+          <div class="reveal timeline-item">
+            <div class="text-xs uppercase tracking-wider text-[color:var(--gold)] mb-2">Growth</div>
+            <h3 class="font-serif text-xl font-bold text-[color:var(--cream)] mb-3">Regional expansion</h3>
+            <p class="text-sm leading-relaxed text-[color:var(--cream)]/60">Sourcing later extended to Vietnam, Cambodia, and the Philippines to sustain long-term supply to Singapore projects.</p>
+          </div>
+          <div class="reveal reveal-delay-1 timeline-item">
+            <div class="text-xs uppercase tracking-wider text-[color:var(--gold)] mb-2">2019</div>
+            <h3 class="font-serif text-xl font-bold text-[color:var(--cream)] mb-3">Licences used by Pan-United</h3>
+            <p class="text-sm leading-relaxed text-[color:var(--cream)]/60">Pan-United, a Singapore-listed company, tendered for reclamation projects using the Group's licences, with the last Singapore tender concluded in 2019.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section id="contact" class="relative py-24 lg:py-32 hero-bg overflow-hidden">
+  <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center">
+    <div class="reveal flex items-center justify-center gap-3 mb-8">
+      <span class="h-px w-12 bg-[color:var(--gold)]"></span>
+      <span class="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--gold)]">Partner With Us</span>
+      <span class="h-px w-12 bg-[color:var(--gold)]"></span>
+    </div>
+    <h2 class="reveal reveal-delay-1 font-serif text-4xl md:text-6xl font-bold leading-tight text-[color:var(--cream)] mb-8">
+      Partner with a group built on <span class="text-gradient italic">trust and scale.</span>
+    </h2>
+    <p class="reveal reveal-delay-2 text-lg leading-relaxed text-[color:var(--cream)]/70 max-w-2xl mx-auto mb-12">
+      From reclamation sand supply and port development to commodity trade and strategic investment, we welcome serious institutional and government partners.
+    </p>
+    <div class="reveal reveal-delay-3 flex flex-wrap gap-4 justify-center">
+      <a href="mailto:business@singaporefundscorporation.com" class="btn-gold inline-flex items-center gap-3 px-10 py-4 text-sm">
+        Contact Our Team
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-[color:var(--gold)]/20 bg-[color:var(--navy-deep)]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 flex items-center justify-center border border-[color:var(--gold)]/60 bg-gradient-to-br from-[color:var(--gold)] to-[color:var(--gold-dark)] text-[color:var(--navy-deep)]">
+          <span class="font-serif text-[15px] font-bold">SFC</span>
+        </div>
+        <div>
+          <div class="font-serif text-sm font-bold text-[color:var(--cream)]">Singapore Funds Corporation</div>
+          <div class="text-[10px] uppercase tracking-[0.2em] text-[color:var(--gold)]/60">Holding & Investment Group</div>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4 text-xs text-[color:var(--cream)]/40">
+        <p>© 2026 Singapore Funds Corporation. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Animated counters
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const increment = target / 60;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.floor(current) + suffix;
+        }, 25);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const closeMenu = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Floating particles
+  const particlesContainer = document.getElementById('particles');
+  function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+    particlesContainer.appendChild(particle);
+    setTimeout(() => particle.remove(), 35000);
+  }
+  setInterval(createParticle, 800);
+  for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 200);
+
+  // Nav active state
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (scrollY >= sectionTop) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
